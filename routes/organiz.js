@@ -1,0 +1,33 @@
+const express = require('express');
+const router = express.Router();
+const Organiz = require('../model/organiz');
+
+router.get('/', async (req, res) => {
+    const result = await Organiz.find({});
+    res.send(result);
+});
+
+router.get('/:id', async (req, res) => {
+    const organizId = (req.params.id);
+    const organiz = await Organiz.find({ _id: organizId });
+    res.json(organiz);
+});
+
+router.post('/', async (req, res) => {
+    try{
+        const { organiz_name, organiz_description, organiz_price } = req.body;
+        if (!(organiz_name && organiz_description && organiz_price)) {
+            res.status(404).send("All input is required");
+        }
+
+        const organiz = await Organiz.create({
+            organiz_name,
+            organiz_description,
+            organiz_price
+        })
+        res.status(201).json(organiz);
+    } catch (err) {
+        console.log(err);
+    }
+});
+module.exports = router;
