@@ -15,15 +15,14 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { organiz_name, organiz_description, organiz_price } = req.body;
-        if (!(organiz_name && organiz_description && organiz_price)) {
+        const { organiz_name, organiz_description } = req.body;
+        if (!(organiz_name && organiz_description )) {
             res.status(404).send("All input is required");
         }
 
         const organiz = await Organiz.create({
             organiz_name,
             organiz_description,
-            organiz_price
         })
         res.status(201).json(organiz);
     } catch (err) {
