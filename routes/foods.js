@@ -15,8 +15,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { food_name, food_catagory, food_restaurant, food_lacation, food_description, food_price } = req.body;
-        if (!(food_name && food_catagory && food_restaurant && food_lacation && food_description && food_price)) {
+        const { food_name, food_catagory, food_restaurant, food_location, food_description, food_price } = req.body;
+        if (!(food_name && food_catagory && food_restaurant && food_location && food_description && food_price)) {
             res.status(404).send("All input is required");
         }
 
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
             food_name,
             food_catagory,
             food_restaurant,
-            food_lacation,
+            food_location,
             food_description,
             food_price
         })

@@ -15,8 +15,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { location_name, location_province, location_description, loaction_price } = req.body;
-        if (!(location_name && location_province && location_description && loaction_price)) {
+        const { location_name, location_province, location_description, location_price } = req.body;
+        if (!(location_name && location_province && location_description && location_price)) {
             res.status(404).send("All input is required");
         }
 
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
             location_name,
             location_province,
             location_description,
-            loaction_price
+            location_price
         })
         res.status(201).json(location);
     } catch (err) {

@@ -5,7 +5,7 @@ const locationScheme = new mongoose.Schema({
     location_name: {type: String},
     location_province: {type: String},
     location_description: { type: String},
-    loaction_price: {type: String},
+    location_price: {type: Number},
 
 });
 
