@@ -7,10 +7,10 @@ const jwt = require('jsonwebtoken');
 router.post('/', async (req, res) => {
     try{
         //Get user input
-        const { first_name, last_name, email, password } = req.body;
+        const { user_name, email, password } = req.body;
 
         //Validate user input
-        if(!(email && password && first_name && last_name)){
+        if(!(email && password && user_name)){
             res.status(400).send('All input is required');
         }
 
@@ -27,11 +27,9 @@ router.post('/', async (req, res) => {
 
         //Create user in our database
         const user = await User.create({
-            first_name,
-            last_name,
+            user_name,
             email: email.toLowerCase(),
-            password: encryptedPassword
-
+            password: encryptedPassword,
         })
 
         //Create token
@@ -47,7 +45,7 @@ router.post('/', async (req, res) => {
         user.token = token;
 
         //return new user
-        res.status(201).send(user);
+        res.status(200).send(user);
 
     } catch(err) {
         console.log(err)
