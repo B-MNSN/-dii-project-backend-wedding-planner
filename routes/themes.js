@@ -15,12 +15,13 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { theme_name, theme_description, theme_price } = req.body;
+        const { theme_img, theme_name, theme_description, theme_price } = req.body;
         if (!(theme_name && theme_description && theme_price)) {
-            res.status(404).send("All input is required");
+           return res.status(404).send("All input is required");
         }
 
         const theme = await Theme.create({
+            theme_img,
             theme_name,
             theme_description,
             theme_price

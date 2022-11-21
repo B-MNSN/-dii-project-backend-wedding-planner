@@ -15,12 +15,13 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { organiz_name, organiz_description } = req.body;
-        if (!(organiz_name && organiz_description )) {
+        const { organiz_img, organiz_name, organiz_description } = req.body;
+        if (!(organiz_img && organiz_name && organiz_description )) {
             res.status(404).send("All input is required");
         }
 
         const organiz = await Organiz.create({
+            organiz_img,
             organiz_name,
             organiz_description,
         })

@@ -3,6 +3,24 @@ const router = express.Router();
 const User = require('../model/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth')
+require('dotenv').config()
+
+router.get('/', auth, async (req, res) => {
+    const result = await User.find({});
+    res.send(result);
+});
+
+router.get('/getuser', auth, async (req, res) => {
+    const result = await User.findById({_id: req.user.user_id});
+    res.send(result);
+});
+
+router.get('/:id', async (req, res) => {
+    const userId = (req.params.id);
+    const user = await User.find({ _id: userId });
+    res.json(user);
+});
 
 router.post('/', async (req, res) => {
     try{
@@ -22,10 +40,8 @@ router.post('/', async (req, res) => {
             //Create token
             const token = jwt.sign(
                 { user_id: user._id, email },
-                process.env.TOKEN_KEY,
-                {
-                    expiresIn: '2h'
-                }
+                process.env.TOKEN_KEY
+               
             )
             //save user token
             user.token = token;

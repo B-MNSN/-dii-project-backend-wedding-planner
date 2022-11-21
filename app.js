@@ -19,6 +19,7 @@ const photo = require('./routes/photo');
 const card = require('./routes/card');
 const gift = require('./routes/gift');
 const organiz = require('./routes/organiz');
+const transaction = require('./routes/transactions');
 
 const app = express();
 
@@ -35,7 +36,8 @@ app.use('/dress', dress)
 app.use('/photo', photo);
 app.use('/card', card);
 app.use('/gift', gift);
-app.use('/organiz', organiz);  
+app.use('/organiz', organiz); 
+app.use('/transaction', transaction);
 
 app.post('/welcome', auth, (req, res) => {
     res.status(200).send('Welcome Beer world 🙏');

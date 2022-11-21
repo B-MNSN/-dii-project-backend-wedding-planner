@@ -15,12 +15,13 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { card_name, card_description, card_price } = req.body;
-        if (!(card_name && card_description && card_price)) {
+        const { card_img, card_name, card_description, card_price } = req.body;
+        if (!(card_img && card_name && card_description && card_price)) {
             res.status(404).send("All input is required");
         }
 
         const card = await Card.create({
+            card_img,
             card_name,
             card_description,
             card_price

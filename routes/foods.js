@@ -15,12 +15,13 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { food_name, food_catagory, food_restaurant, food_location, food_description, food_price } = req.body;
+        const { food_img, food_name, food_catagory, food_restaurant, food_location, food_description, food_price } = req.body;
         if (!(food_name && food_catagory && food_restaurant && food_location && food_description && food_price)) {
             res.status(404).send("All input is required");
         }
 
         const food = await Food.create({
+            food_img,
             food_name,
             food_catagory,
             food_restaurant,
