@@ -15,8 +15,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { organiz_img, organiz_name, organiz_description } = req.body;
-        if (!(organiz_img && organiz_name && organiz_description )) {
+        const { organiz_img, organiz_name, organiz_description,organiz_theme, organiz_food,organiz_location, organiz_dress, organiz_photo,organiz_card,organiz_gift} = req.body;
+        if (!(organiz_img && organiz_name && organiz_description && organiz_theme && organiz_food && organiz_location && organiz_dress && organiz_photo && organiz_card && organiz_gift)) {
             res.status(404).send("All input is required");
         }
 
@@ -24,10 +24,18 @@ router.post('/', async (req, res) => {
             organiz_img,
             organiz_name,
             organiz_description,
+            organiz_theme,
+            organiz_food,
+            organiz_location,
+            organiz_dress,
+            organiz_photo,
+            organiz_card,
+            organiz_gift
         })
         res.status(201).json(organiz);
     } catch (err) {
         console.log(err);
     }
 });
+
 module.exports = router;

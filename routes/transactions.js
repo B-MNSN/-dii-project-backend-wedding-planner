@@ -31,19 +31,26 @@ router.get('/getuser/:id', auth, async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const { user_id, guest, theme, work, food, loacation, dress, photo, card, gift } = req.body;
+        const { user_id, guest, theme,  theme_price, work, food, food_price, loacation, location_price, dress, dress_price, photo, photo_price, card, card_price, gift, gift_price } = req.body;
 
         const transaction = await Transaction.create({
             user_id,
             guest,
             theme,
+            theme_price,
             work,
             food,
+            food_price,
             loacation,
+            location_price,
             dress,
+            dress_price,
             photo,
+            photo_price,
             card,
-            gift
+            card_price,
+            gift,
+            gift_price
         })
         res.status(201).json(transaction);
     } catch (err) {
